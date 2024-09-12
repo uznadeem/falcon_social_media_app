@@ -1,6 +1,6 @@
 import consumer from "./consumer"
 
-consumer.subscriptions.create("PostsChannel", {
+let subscription = consumer.subscriptions.create("PostsChannel", {
   connected() {
     console.log("Connected to PostsChannel")
   },
@@ -12,5 +12,15 @@ consumer.subscriptions.create("PostsChannel", {
   received(data) {
     const postsContainer = document.getElementById("posts")
     postsContainer.insertAdjacentHTML("beforeend", data.post)
+  },
+  sendMessage(message) {
+    this.perform(
+      "sendMessage",
+      {
+        message: message,
+      }
+    );
   }
 })
+
+export {subscription}

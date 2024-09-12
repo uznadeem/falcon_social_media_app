@@ -2,3 +2,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "channels"
+import {subscription} from "channels/posts_channel"
+export {subscription}
