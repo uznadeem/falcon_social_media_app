@@ -5,4 +5,10 @@ class PostsChannel < ApplicationCable::Channel
 
   def unsubscribed
   end
+
+  def sendMessage(params)
+    puts "START"
+    sleep 10
+    puts "DONE"
+  end
 end

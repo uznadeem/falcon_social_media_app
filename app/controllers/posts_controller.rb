@@ -12,6 +12,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.content = "test" if @post.content.blank?
+
+    sleep(10)
+
     if @post.save
       ActionCable.server.broadcast("posts_channel", { post: render_post(@post) })
       redirect_to posts_path, notice: "Post was successfully created."
